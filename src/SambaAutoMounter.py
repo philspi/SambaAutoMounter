@@ -251,7 +251,7 @@ def writeInitialConfig( filename ):
 
 	# Actually writing config to file
 	configDir = os.path.dirname( filename )
-	if not os.path.exists( configDir ):
+	if configDir != '' and not os.path.exists( configDir ):
 		os.makedirs( configDir )
 	configFile = open( filename, 'w' )
 	if configFile == None:
@@ -263,6 +263,8 @@ def readConfig( filename ):
 	filename = filename.replace( "~", os.getenv("HOME") )
 	if not os.path.exists( filename ):
 		writeInitialConfig( filename )
+                print "Wrote initial configuration to: ", filename
+                sys.exit(1)
 	config = ConfigParser.ConfigParser()
 	config.optionxform = str
 	config.read( filename )

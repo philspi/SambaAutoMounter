@@ -14,7 +14,7 @@ class AvahiSambaServiceDiscovererCreater:
 	def __call__( self, systemBus, sessionBus, mainLoop ):
 		return self.__mounterClass( systemBus, *self.__args )
 
-# Looks for iTunes shares
+# Looks for Samba shares
 class AvahiSambaServiceDiscoverer:
 	def __init__( self, systemBus, logger ):
 		self.logger = logger
