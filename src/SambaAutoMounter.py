@@ -194,10 +194,7 @@ class SambaMounter( AvahiSambaServiceDiscoverer, DBusGnomeSessionClient, SignalM
 		args = [ "smbclient","-L", name, "-I", address, "-N", "-g", "-p", str(port) ]
 		myArgs = args
 
-		if not name in self.serviceLogins:
-			myArgs.append("-U")
-			myArgs.append("GUEST")
-		else:
+		if name in self.serviceLogins:
 			myArgs.append("-U")
 			myArgs.append( self.serviceLogins[ name ] )
 		smbClient = subprocess.Popen( myArgs, stdout=subprocess.PIPE, stderr=subprocess.PIPE )
